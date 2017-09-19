@@ -17,17 +17,26 @@ class ViewController: UIViewController {
         return player
     }()
     
+    @IBOutlet weak var playPauseButton: UIButton?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
-        streamPlayer.play()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
+    
+    @IBAction func playPauseAction(sender: UIButton) {
+        if streamPlayer.timeControlStatus == .playing {
+            streamPlayer.pause()
+            playPauseButton?.setTitle("Play", for: .normal)
+        } else {
+            streamPlayer.play()
+            playPauseButton?.setTitle("Pause", for: .normal)
+        }
+    }
 }
 
